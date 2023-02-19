@@ -1,1 +1,3 @@
-nodemodule
+node_module
+
+.env

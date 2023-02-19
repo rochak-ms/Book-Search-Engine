@@ -41,12 +41,12 @@ export const SAVE_BOOK = gql`
       username
       email
       savedBooks {
-        authors
         bookId
-        image
-        link
+        authors
         title
         description
+        image
+        link
       }
     }
   }
