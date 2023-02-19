@@ -8,22 +8,16 @@ import {
   Card,
   CardColumns,
 } from "react-bootstrap";
-
 import Auth from "../utils/auth";
-// import { searchGoogleBooks } from "../utils/API";
+import { searchGoogleBooks } from "../utils/API";
 import { saveBookIds, getSavedBookIds } from "../utils/localStorage";
-
 import { useMutation } from "@apollo/client";
-
 import { SAVE_BOOK } from "../utils/mutations";
 
 const SearchBooks = () => {
   const [searchedBooks, setSearchedBooks] = useState([]);
-
   const [searchInput, setSearchInput] = useState("");
-
   const [savedBookIds, setSavedBookIds] = useState(getSavedBookIds());
-
   const [saveBook, { error }] = useMutation(SAVE_BOOK);
 
   useEffect(() => {
@@ -38,9 +32,7 @@ const SearchBooks = () => {
     }
 
     try {
-      const response = await fetch(
-        `https://www.googleapis.com/books/v1/volumes?q=${searchInput}`
-      );
+      const response = await searchGoogleBooks(searchInput);
 
       if (!response.ok) {
         throw new Error("Something went wrong!");
