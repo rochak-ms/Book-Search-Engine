@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Jumbotron,
   Container,
@@ -14,8 +14,8 @@ import { REMOVE_BOOK } from "../utils/mutations";
 
 const SavedBooks = () => {
   const { loading, data } = useQuery(GET_ME);
-  const userData = data?.me || {};
   const [removeBook, { error }] = useMutation(REMOVE_BOOK);
+  const userData = data?.me || {};
 
   // create function that accepts the book's mongo _id value as param and deletes the book from the database
   const handleDeleteBook = async (bookId) => {
