@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from "react";
 import { Form, Button, Alert } from "react-bootstrap";
 
-// import { loginUser } from '../utils/API';
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../utils/mutations";
 import Auth from "../utils/auth";
@@ -11,8 +10,8 @@ const LoginForm = () => {
   const [userFormData, setUserFormData] = useState({ email: "", password: "" });
   const [validated] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
-
   const [loginUser, { error }] = useMutation(LOGIN_USER);
+
   useEffect(() => {
     if (error) {
       setShowAlert(true);
@@ -38,7 +37,7 @@ const LoginForm = () => {
 
     try {
       console.log("TRYBLOCKLOGIN");
-      const response = await loginUser(...userFormData);
+      const response = await login({ variables: { ...userFormData } });
       console.log("RESPONSE", response);
 
       if (!response.ok) {
